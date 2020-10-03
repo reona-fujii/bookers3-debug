@@ -58,6 +58,16 @@
 			<% end %>
 		</div>
 		<% end %>
+		<% if @book_comment.errors.any? %>
+			<div id="error_explanation">
+				<h3><%= @book_comment.errors.count %>error prohibited this obj from being saved:</h3>
+				<ul>
+					<% @book_comment.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 		<%= form_with(model:[@book,@book_comment], local: true) do |f| %>
 			<%= f.text_area :comment, row: '5', size: "100x5" %>
 			<%= f.submit "送信", class:"btn btn-lg" %>
